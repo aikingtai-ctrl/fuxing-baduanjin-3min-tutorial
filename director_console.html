@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金泰影视 · 导演实时滑块调参台 (director_console.html)</title>
+<style>
+  :root {
+    --bg: #0f141d;
+    --card: #182130;
+    --border: #2c3e58;
+    --accent: #00f5d4;
+    --gold: #ffd166;
+    --text: #f1f5f9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 28px 36px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Microsoft YaHei", sans-serif;
+    font-size: 20pt;
+    line-height: 1.6;
+  }
+  h1 { font-size: 30pt; color: var(--gold); margin: 0 0 14px 0; }
+  .layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; }
+  .card { background: var(--card); border: 2px solid var(--border); border-radius: 14px; padding: 24px; }
+  label { display: block; font-weight: bold; margin: 14px 0 6px 0; color: var(--gold); }
+  select, input[type="range"] { width: 100%; font-size: 19pt; padding: 8px; border-radius: 8px; background: #0b0f17; color: var(--text); border: 2px solid var(--border); }
+  button {
+    margin-top: 20px;
+    padding: 14px 28px;
+    font-size: 21pt;
+    font-weight: bold;
+    background: var(--accent);
+    color: #0b0f17;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+  }
+  pre { background: #0b0f17; padding: 16px; border-radius: 10px; border: 2px solid var(--border); font-size: 17pt; overflow-x: auto; color: #93c5fd; }
+  video { width: 100%; border-radius: 12px; border: 2px solid var(--border); }
+</style>
+</head>
+<body>
+  <h1>🎛️ 金泰影视 · 全 8 集导演实时滑块调参台 (director_console.html)</h1>
+  <div class="layout">
+    <div class="card">
+      <label for="epSelect">选择预览剧集 (EP01–EP08)：</label>
+      <select id="epSelect" onchange="switchEpisode()">
+        <option value="EP01">EP01 · 两手托天理三焦（二十四节气顺逆双练）</option>
+        <option value="EP02">EP02 · 左右开弓似射雕（京味城门景点双练）</option>
+        <option value="EP03">EP03 · 调理脾胃须单举（北京美食红绿灯双练）</option>
+        <option value="EP04">EP04 · 五劳七伤往后瞧（老北京胡同挑词双练）</option>
+        <option value="EP05">EP05 · 摇头摆尾去心火（传统佳节习俗双练）</option>
+        <option value="EP06">EP06 · 两手攀足固肾腰（十二生肖顺逆双练）</option>
+        <option value="EP07">EP07 · 攒拳怒目增气力（吉祥成语挑数冲拳）</option>
+        <option value="EP08">EP08 · 背后七颠百病消（节气歌与八式团圆收官）</option>
+      </select>
+      <video id="epVideo" controls preload="metadata" style="margin-top:16px;" src="05_final_deliverables/EP01_Baduanjin_Community_Collective_3min_Master.mp4"></video>
+      <p id="auditLinkWrap" style="margin-top:14px;">
+        <a id="auditLink" href="03_adversarial_audit_sheets/AUDIT_SHEET_EP01_FINAL.png" target="_blank" style="color:var(--accent); font-weight:bold;">🔍 点击查看当前剧集 2560×1440 【影视四联标准检视板】</a>
+      </p>
+    </div>
+
+    <div class="card">
+      <label>色温微调 (Color Temp K): <span id="vTemp">5500</span>K</label>
+      <input type="range" id="sTemp" min="4500" max="6500" step="100" value="5500" oninput="updateJSON()">
+
+      <label>主光比 (Key/Fill Ratio): <span id="vRatio">2.0</span>:1</label>
+      <input type="range" id="sRatio" min="1.2" max="3.5" step="0.1" value="2.0" oninput="updateJSON()">
+
+      <label>领操语音语速微调 (Voice Rate %): <span id="vRate">-6</span>%</label>
+      <input type="range" id="sRate" min="-15" max="5" step="1" value="-6" oninput="updateJSON()">
+
+      <label>背景国风音乐闪避音量 (BGM Ducking dB): <span id="vBgm">-27</span> dB</label>
+      <input type="range" id="sBgm" min="-36" max="-14" step="1" value="-27" oninput="updateJSON()">
+
+      <label>适老化无标点大字幕字号 (Subtitle pt): <span id="vSub">64</span> pt</label>
+      <input type="range" id="sSub" min="54" max="76" step="2" value="64" oninput="updateJSON()">
+
+      <label>防跌倒列队间距 (Matrix Spacing m): <span id="vSpace">1.8</span> m</label>
+      <input type="range" id="sSpace" min="1.5" max="2.4" step="0.1" value="1.8" oninput="updateJSON()">
+
+      <button onclick="copySettings()">📋 Copy Settings as JSON (一键复制调参配置)</button>
+      <pre id="jsonOut"></pre>
+    </div>
+  </div>
+
+  <script>
+    function switchEpisode() {
+      const ep = document.getElementById('epSelect').value;
+      document.getElementById('epVideo').src = `05_final_deliverables/${ep}_Baduanjin_Community_Collective_3min_Master.mp4`;
+      document.getElementById('auditLink').href = `03_adversarial_audit_sheets/AUDIT_SHEET_${ep}_FINAL.png`;
+      updateJSON();
+    }
+    function updateJSON() {
+      const ep = document.getElementById('epSelect').value;
+      const cfg = {
+        episode: ep,
+        lighting_color_temp_k: Number(document.getElementById('sTemp').value),
+        key_fill_ratio: Number(document.getElementById('sRatio').value),
+        voice_rate_pct: Number(document.getElementById('sRate').value),
+        bgm_speech_duck_db: Number(document.getElementById('sBgm').value),
+        subtitle_font_size_pt: Number(document.getElementById('sSub').value),
+        subtitle_zero_punctuation: true,
+        senior_matrix_spacing_m: Number(document.getElementById('sSpace').value),
+        chair_offset_behind_senior_m: 0.45
+      };
+      document.getElementById('vTemp').textContent = cfg.lighting_color_temp_k;
+      document.getElementById('vRatio').textContent = cfg.key_fill_ratio.toFixed(1);
+      document.getElementById('vRate').textContent = cfg.voice_rate_pct;
+      document.getElementById('vBgm').textContent = cfg.bgm_speech_duck_db;
+      document.getElementById('vSub').textContent = cfg.subtitle_font_size_pt;
+      document.getElementById('vSpace').textContent = cfg.senior_matrix_spacing_m.toFixed(1);
+      document.getElementById('jsonOut').textContent = JSON.stringify(cfg, null, 2);
+    }
+    function copySettings() {
+      navigator.clipboard.writeText(document.getElementById('jsonOut').textContent);
+      alert('已复制当前 JSON 参数！可直接粘贴发给 01 号总导演写回管线默认值。');
+    }
+    updateJSON();
+  </script>
+</body>
+</html>
