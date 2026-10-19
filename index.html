@@ -78,31 +78,31 @@
 <body>
   <h1>🎬 新·八段锦双任务认知训练视频（社区集体活动版·3分钟教程版）全 8 集 1080P 总控进度画廊</h1>
   <div>
-    <span class="badge badge-pass">Pass 05 · EP01 100% MiniMax H3 真人动态视频升级完成 (1080P CRF 14)</span>
-    <span class="badge badge-info">MiniMaxH3ReferenceToVideo + VRGDG_MiniMaxH3AudioDrive + ReActor 真脸锁定</span>
-    <span class="badge badge-info">h3-prompt-writing 六段提示词 (semfill 7/7 零错误) · 零静态图变形</span>
-    <span class="badge badge-info">100% 真实医护照片换脸 + 8色不重样长者服装 + 《春江花月夜》民乐</span>
+    <span class="badge badge-pass">Pass 06 · EP01 人物参考一致(零面部锁死) + LatentSync/InfiniteTalk 对口型 + Qwen3-TTS 语音版 (1080P)</span>
+    <span class="badge badge-info">MiniMaxH3ReferenceToVideo 人物参考 · 彻底废除 ReActor 死板贴脸</span>
+    <span class="badge badge-info">LatentSync_视频对口型.json + InfiniteTalk_已有模型已配置.json + Qwen3-TTS.json</span>
+    <span class="badge badge-info">人物参考微表情自然灵动 + 8色不重样长者服装 + 《春江花月夜》民乐</span>
   </div>
 
-  <h2>一、Pass 05 导演核心指令（MiniMax H3 真人视频 + 指定角色真脸锁定）闭环核验总表</h2>
+  <h2>一、Pass 06 导演核心指令（人物参考一致·零面部锁死 + LatentSync/InfiniteTalk/Qwen3-TTS 工作流）闭环核验总表</h2>
   <table>
     <thead>
       <tr>
         <th>导演审查意见</th>
-        <th>Pass 05 工程级根治方案与实测指标</th>
+        <th>Pass 06 工程级根治方案与实测指标</th>
         <th>核验状态</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>0. 彻底废除静态图变形，改用 MiniMax H3 工作流 + h3-prompt-writing 生成真人动态视频（第1集先行验证）</strong></td>
-        <td>在 A 机 7 卡集群（<code>172.16.0.10:8188–8194</code>）全量运行 <code>MiniMaxH3ReferenceToVideo + VRGDG_MiniMaxH3AudioDrive + ReActorFaceSwapOpt</code> 真人视频生成管线；7 段提示词严格按 <code>h3-prompt-writing</code> 六段结构编写并通过 <code>semfill.py</code> 校验（<code>7/7 PASS, 0 Errors</code>）；全身托天动作、手势、转头、眨眼、呼吸与说话口型 <code>100%</code> 为 MiniMax H3 真实视频帧，<strong>彻底清零 2D 静态图局部仿射变形（<code>cv2.remap = 0</code>）</strong></td>
+        <td><strong>0. 面孔锁定改为人物参考（Character Reference），保持人物一致性而不是把面部锁死</strong></td>
+        <td>彻底废除 <code>ReActorFaceSwapOpt</code> 逐帧 2D 换脸贴片（杜绝面部表情僵死）；全量改用 <code>QwenImageEditPlus</code> 多图人物参考 + <code>MiniMaxH3ReferenceToVideo</code> 原生人物参考视频底片（<code>*_pure_h3.mp4</code>），在保持王主任（<code>@CHR_80</code>）与高宝森康复师（<code>@CHR_82</code>）人物特征一致的同时，完整保留自然的眼部眨动、眉眼微笑、头部微转与呼吸神态</td>
         <td>✅ EP01 100% 闭环</td>
       </tr>
       <tr>
-        <td><strong>1. 所有口型与声音不一致</strong></td>
-        <td>采用 <code>VRGDG_MiniMaxH3AudioDrive</code> 语音驱动口型与全身微动作，并严格对齐 <code>ep01_voice_workflow_report.json</code> 说话时间窗；发言时段呈现自然连续说话口型与手势，停顿与定势时段平滑切换至 H3 闭口呼吸与托天定势真实视频帧</td>
-        <td>✅ 100% 闭环</td>
+        <td><strong>1. 使用指定三大工作流（<code>LatentSync_视频对口型.json</code> + <code>InfiniteTalk_已有模型已配置.json</code> + <code>Qwen3-TTS.json</code>）完成语音与对口型</strong></td>
+        <td>在 A 机 7 卡集群（<code>172.16.0.10:8188–8194</code>）全量运行截图指定的三大工作流：① <code>Qwen3-TTS.json</code>（<code>Qwen3-TTS-12Hz-1.7B-CustomVoice</code>）合成王主任（<code>Uncle_fu</code> 沉稳男主任医师声线）、高宝森（<code>Dylan</code> 清晰北京男康复师声线）及 8 位社区长者齐声节气应答（<code>Uncle_fu + Eric + Serena + Vivian</code> 四声部混音）；② <code>LatentSync_视频对口型.json</code>（<code>LatentSync 1.6 + sd-vae-ft-mse</code>）对 7 段 H3 人物参考全身视频逐音节驱动唇形与牙齿开合；③ <code>InfiniteTalk_已有模型已配置.json</code>（<code>Wan2.1-InfiniteTalk-Single + wav2vec2-chinese-base</code>）生成王主任认知双练与安全叮嘱特写段音频驱动视频</td>
+        <td>✅ EP01 100% 闭环</td>
       </tr>
       <tr>
         <td><strong>2. 女医生声音是女童声</strong></td>
@@ -111,22 +111,17 @@
       </tr>
       <tr>
         <td><strong>3. 后面群众样貌与服装重复</strong></td>
-        <td>通过 A 机 7 卡 <code>QwenImageEditPlus</code> 将 8 位背景长者替换为 8 套不同色彩日常社区锻炼服装（酒红开衫、石板蓝夹克、鼠尾草绿背心、梅紫毛衣、深藏青运动服、陶土橘开衫、青蓝针织衫、炭灰马甲）及 8 张完全不重复的真实长者面孔与发型，并在 H3 视频中同步跟练</td>
+        <td>通过 A 机 7 卡 <code>QwenImageEditPlus</code> 将 8 位背景长者设定为 8 套不同色彩日常社区锻炼服装（酒红开衫、石板蓝夹克、鼠尾草绿背心、梅紫毛衣、深藏青运动服、陶土橘开衫、青蓝针织衫、炭灰马甲）及 8 张完全不重复的真实长者面孔与发型，并在 H3 + LatentSync 视频中同步跟练应答</td>
         <td>✅ 100% 闭环</td>
       </tr>
       <tr>
         <td><strong>4. 背景音乐要《春江花月夜》《彩云追月》</strong></td>
-        <td>采用正版民乐大师实录母带：奇数集（EP01/03/05/07）铺底 <code>180.0s</code> 整轨<strong>《春江花月夜》</strong>，偶数集（EP02/04/06/08）铺底 <code>180.0s</code> 整轨<strong>《彩云追月》</strong>，含语音自动闪避（Ducking）</td>
+        <td>采用正版民乐大师实录母带：奇数集（EP01/03/05/07）铺底 <code>180.0s</code> 整轨<strong>《春江花月夜》</strong>，偶数集（EP02/04/06/08）铺底 <code>180.0s</code> 整轨<strong>《彩云追月》</strong>，与 <code>Qwen3-TTS</code> 语音轨进行平滑闪避混音（Ducking）</td>
         <td>✅ 100% 闭环</td>
       </tr>
       <tr>
-        <td><strong>5. 医护样貌与提供照片不一致</strong></td>
-        <td>在 H3 视频解码后逐帧串联 <code>ReActorFaceSwapOpt (inswapper_128 + CodeFormer 0.85)</code>，将王主任（<code>@CHR_80</code> 深藏青西装+条纹领带+黑框眼镜）与高宝森康复师（<code>@CHR_82</code> 白大褂+宝蓝领带+银框眼镜）在每一帧 H3 动态视频中 1:1 锁定为您提供的真人照片面孔</td>
-        <td>✅ 100% 闭环</td>
-      </tr>
-      <tr>
-        <td><strong>6. 全部影片清晰度调整到 1080P</strong></td>
-        <td>母带成片全量输出为 <code>1920×1080 (1080P, H.264 High@L4.1 -crf 14)</code> 超清画质</td>
+        <td><strong>5. 全部影片清晰度调整到 1080P</strong></td>
+        <td>母带成片全量输出为 <code>1920×1080 (1080P, 24fps, H.264 High@L4.1 +faststart)</code> 超清画质</td>
         <td>✅ 100% 闭环</td>
       </tr>
     </tbody>
@@ -135,20 +130,20 @@
   <h2>二、全 8 集（EP01–EP08）1080P 180.0s 成片、音频母带、四联检视板与 2K 目标板画廊</h2>
   
     <div class="card" style="margin-bottom: 28px; border-color: var(--accent);">
-      <h3>第1集：两手托天理三焦（二十四节气顺逆双练） <span class="badge badge-pass">✅ Pass 05 · 100% MiniMax H3 真人动态视频 + 指定角色真脸锁定 + 8色长者服装 (1080P)</span></h3>
-      <p><strong>主讲医护与声线基频：</strong>王主任 (@CHR_80 男声 138Hz · 真人照片面孔锁定) + 高宝森 (@CHR_82 男声 172Hz · 真人照片面孔锁定) + 8位长者 (8色毛衣开衫同步跟练) &nbsp;|&nbsp; <strong>中式民乐 BGM：</strong>《春江花月夜》(琵琶古筝名曲实录)</p>
-      <p><strong>H3 视频生成管线：</strong><code>MiniMaxH3ReferenceToVideo + VRGDG_MiniMaxH3AudioDrive + ReActorFaceSwapOpt</code>（<code>h3-prompt-writing</code> 六段提示词 <code>semfill 7/7 PASS</code>，零静态图像变形）</p>
+      <h3>第1集：两手托天理三焦（二十四节气顺逆双练） <span class="badge badge-pass">✅ Pass 06 · 人物参考一致(零面部锁死) + LatentSync/InfiniteTalk对口型 + Qwen3-TTS语音 (1080P)</span></h3>
+      <p><strong>主讲医护与 Qwen3-TTS 声线：</strong>王主任 (@CHR_80 人物参考 · Qwen3-TTS Uncle_fu 沉稳男主任声线) + 高宝森 (@CHR_82 人物参考 · Qwen3-TTS Dylan 清晰男康复师声线) + 8位长者 (8色毛衣开衫 · 四声部合唱齐呼“立春/雨水/大寒”) &nbsp;|&nbsp; <strong>中式民乐 BGM：</strong>《春江花月夜》(琵琶古筝名曲实录)</p>
+      <p><strong>对口型与人物参考管线：</strong><code>MiniMaxH3ReferenceToVideo (人物参考·零ReActor锁死) + LatentSync_视频对口型.json + InfiniteTalk_已有模型已配置.json + Qwen3-TTS.json</code></p>
       <div class="grid-2">
         <div>
-          <p><strong>🎬 EP01 180.0s (4320帧 @ 24fps) 1920×1080 (1080P) MiniMax H3 真人视频母带成片：</strong></p>
-          <video controls preload="metadata" src="05_final_deliverables/EP01_Baduanjin_Community_Collective_3min_Master.mp4?v=pass05_real_h3"></video>
-          <p style="margin-top:12px;"><strong>🔊 EP01 180.0s 成熟医护配音 + 《春江花月夜》(琵琶古筝名曲实录) 整轨混音母带：</strong></p>
-          <audio controls preload="metadata" src="04_production_passes/audio/ep01_master_audio_180s.mp3?v=pass05_real_h3"></audio>
+          <p><strong>🎬 EP01 180.0s (4320帧 @ 24fps) 1920×1080 (1080P) Pass 06 人物参考 + LatentSync/InfiniteTalk 母带成片：</strong></p>
+          <video controls preload="metadata" src="05_final_deliverables/EP01_Baduanjin_Community_Collective_3min_Master.mp4?v=pass06_v2"></video>
+          <p style="margin-top:12px;"><strong>🔊 EP01 180.0s Qwen3-TTS 分角色语音 + 《春江花月夜》(琵琶古筝名曲实录) 整轨混音母带：</strong></p>
+          <audio controls preload="metadata" src="04_production_passes/audio/ep01_master_audio_180s.mp3?v=pass06_v2"></audio>
         </div>
         <div>
-          <p><strong>🛡️ EP01 【影视四联标准检视板 · Pass 05 H3真人视频终审版】：</strong></p>
-          <a href="03_adversarial_audit_sheets/AUDIT_SHEET_EP01_FINAL.png?v=pass05_real_h3" target="_blank">
-            <img src="03_adversarial_audit_sheets/AUDIT_SHEET_EP01_FINAL.png?v=pass05_real_h3" alt="EP01 四联检视板">
+          <p><strong>🛡️ EP01 【影视四联标准检视板 · Pass 06 人物参考(零锁死) + LatentSync/InfiniteTalk + Qwen3-TTS】：</strong></p>
+          <a href="03_adversarial_audit_sheets/AUDIT_SHEET_EP01_FINAL.png?v=pass06_v2" target="_blank">
+            <img src="03_adversarial_audit_sheets/AUDIT_SHEET_EP01_FINAL.png?v=pass06_v2" alt="EP01 四联检视板">
           </a>
         </div>
       </div>
